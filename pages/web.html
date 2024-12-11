@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Input</title>
+</head>
+<body>
+    <h1>Input Form</h1>
+    <form action="/er" method="post">
+        <label>States:</label><input type="text" name="states" required><br>
+        <label>Input Symbols:</label><input type="text" name="input_symbols" required><br>
+        <label>Transitions (format: from_state,symbol,to_state):</label>
+        <input type="text" name="transitions" required><br>
+        <label>Initial State:</label><input type="text" name="initial_state" required><br>
+        <label>Final States:</label><input type="text" name="final_states" required><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if er %}
+    <h2>Generated ER:</h2>
+    <p>{{ er }}</p>
+    {% endif %}
+    {% if production_rules %}
+    <h2>Production Rules:</h2>
+    <pre>{{ production_rules }}</pre>
+    {% endif %}
+</body>
+</html>

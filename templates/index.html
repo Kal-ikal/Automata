@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSA S</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Finite State Automata (FSA) Solver</h1>
+        <form action="/process" method="POST">
+            <label for="states">Masukkan state (pisahkan dengan koma):</label>
+            <input type="text" id="states" name="states" placeholder="Misal: q0,q1,q2" required>
+
+            <label for="input_symbols">Masukkan input symbols (pisahkan dengan koma):</label>
+            <input type="text" id="input_symbols" name="input_symbols" placeholder="Misal: 0,1" required>
+
+            <label for="transitions">Masukkan transisi (format: dari_state,input,ke_state):</label>
+            <input type="text" name="transitions" placeholder="Misal: q0,0,q1" required>
+            <input type="text" name="transitions" placeholder="Misal: q1,1,q2">
+            <input type="text" name="transitions" placeholder="Misal: q2,0,q2">
+
+            <label for="initial_state">Masukkan initial state:</label>
+            <input type="text" id="initial_state" name="initial_state" placeholder="Misal: q0" required>
+
+            <label for="final_states">Masukkan final states (pisahkan dengan koma):</label>
+            <input type="text" id="final_states" name="final_states" placeholder="Misal: q2" required>
+
+            <button type="submit">Proses</button>
+        </form>
+    </div>
+</body>
+</html>

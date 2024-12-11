@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            font-size: 1.1em;
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .content {
+            max-width: 1200px; /* Ukuran normal tanpa batas kecil */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+        .diagram-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center; /* Memposisikan diagram di tengah */
+            align-items: flex-start;
+            gap: 40px; /* Jarak antar diagram */
+            margin-top: 20px;
+        }
+        .diagram {
+            text-align: center;
+            flex: 1; /* Agar gambar berskala sama */
+        }
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Hasil Definisi Fsa</h1>
+        
+        <p><strong>State yang dimasukkan:</strong> {{ states }}</p>
+        <p><strong>Simbol input:</strong> {{ input_symbols }}</p>
+
+        <p><strong>Transisi yang dimasukkan:</strong></p>
+        <ul>
+            {% for from_state, transitions in transitions.items() %}
+            <li>
+                <strong>Dari {{ from_state }}:</strong>
+                <ul>
+                    {% for symbol, to_states in transitions.items() %}
+                    <li>Dengan simbol '{{ symbol }}' ke {{ to_states }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>Initial state:</strong> {{ initial_state }}</p>
+        <p><strong>Final state:</strong> {{ final_states }}</p>
+
+        <!-- Menampilkan diagram NFA dan DFA secara horizontal -->
+        <div class="diagram-container">
+            <div class="diagram">
+                <h2>Diagram NFA</h2>
+                <img src="{{ url_for('static', filename=nfa_image) }}" alt="Diagram NFA">
+            </div>
+
+            <div class="diagram">
+                <h2>Diagram DFA</h2>
+                <img src="{{ url_for('static', filename=dfa_image) }}" alt="Diagram DFA">
+            </div>
+        </div>
+
+        <a href="/" class="back-link">Kembali ke halaman utama</a>
+    </div>
+</body>
+</html>
